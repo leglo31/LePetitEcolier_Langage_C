@@ -6,7 +6,7 @@
 #define CHOIX_INSCRIPTION_MODIFIER 2
 
 void formulaireInscriptionEleve(void);
-void validerInscriptionEleve(void);
-void modifierInscriptionEleve(void);
+// void validerInscriptionEleve(void);
+// void modifierInscriptionEleve(void);
 
 #endif

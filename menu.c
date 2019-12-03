@@ -4,7 +4,9 @@
 
 #include "menu.h"
 #include "formulaire.h"
+#include "eleve.h"
 #include "affichage.h"
+#include "annuaire.h"
 
 // Constantes
 #define CHOIX_QUITTER 0
@@ -15,6 +17,9 @@
 #define CHOIX_ELEVE_INSCRIPTION 5
 #define CHOIX_ELEVE_MODIFICATION 6
 #define CHOIX_ELEVE_DESINSCRIPTION 7
+#define CHOIX_VALIDER 1
+#define CHOIX_MODIFIER 2
+#define CHOIX_AFFICHER 3
 
 // Gère le menu Accueil
 void menuAccueil(void)
@@ -51,13 +56,16 @@ void traiterChoixAccueil(int choix)
     // Traiter choix
     switch (choix)
     {
-    case CHOIX_ELEVE:
-        afficherEleve();
-        break;
+    case CHOIX_ELEVE:;
+        // afficherEleve();
+        // break;
     case CHOIX_ELEVE_RECHERCHE:;
-    case CHOIX_CLASSE:
-        afficherClasse();
+    case CHOIX_CLASSE:;
+        // afficherClasse();
+        // break;
     case CHOIX_ECOLE:;
+        afficherAnnuaire();
+        break;
     case CHOIX_ELEVE_INSCRIPTION:
         formulaireInscriptionEleve();
         break;
@@ -66,32 +74,39 @@ void traiterChoixAccueil(int choix)
     }
 }
 
-/*--------------------------------------------------------------------
-    Exécute la commande affichant le détail d'un pilote
--------------------------------------------------------------------
-void formulairePiloteDetail(void)
+int menuFormulaireInscription(void)
 {
-    int indicePilote;
-    introMenu("Détail pilote");
-
-    afficheListePilotesDansAnnuaire();
-    saisieChampIntBetween("N° du pilote dans la liste", &indicePilote,
-            0, nombrePilotes()-1);
-    Pilote_t * pilote = piloteParIndiceAnnuaire(indicePilote);
-    if (pilote != NULL) {
-        afficherPilote(pilote);
-    } else
-        fprintf(stderr, "formulairePiloteDetail: pilote NULL.");
-
-    attenteEntree();
+    int choix;
+    do
+    {
+        do
+        {
+            printf("\n[1] Valider"
+                   "\n[2] Modifier"
+                   "\n[3] Afficher"
+                   "\n[0] Quitter"
+                   "\n\nQue voulez-vous faire ? ");
+            scanf("%d", &choix);
+        } while (choix > 3 && choix < 0);
+    } while (choix != CHOIX_QUITTER);
+    return CHOIX_QUITTER;
 }
 
--------------------------------------------------------------------
-    Exécute la commande affichant le détail des pilotes
--------------------------------------------------------------------
-void commandeAfficherPilotes(void)
+void traiterChoixInscription(int choix)
 {
-    introMenu("Listing pilotes");
-    afficherAnnuaire();
-    attenteEntree();
-}*/
+    // Traiter choix
+    switch (choix)
+    {
+    case CHOIX_VALIDER:
+        sauveDansAnnuaire();
+        break;
+    case CHOIX_MODIFIER:;
+    case CHOIX_AFFICHER:;
+    }
+}
+
+/*
+void inscriptionConfirmer(Eleve_t *eleve) {
+
+}
+*/

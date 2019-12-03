@@ -3,8 +3,8 @@
 
 void effaceEcran(void);
 void introMenu(char *titre);
-void afficherEleve(void);
-void afficherClasse(void);
-void afficherEcole(void);
+void attenteEntree(void);
+int saisieChaine(char *ch, int taille);
+// void afficherEcole(void);
 
 #endif

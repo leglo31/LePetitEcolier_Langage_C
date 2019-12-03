@@ -3,6 +3,7 @@
 
 #define NB_CLASSES_MAX 15
 
+/*
 // Définition de la classe
 typedef enum TypeClasse
 {
@@ -13,14 +14,17 @@ typedef enum TypeClasse
     CM2
 } TypeClasse_t;
 
-char * listeInstit[15] = {"Mme Craie", "Mr Tableau", "Mme Correction", "Mr Effaceur", "Mr Stylo", "Mr Marker", "Mr Punition", "Mr Cartable", "Mme Colle", "Mme Pedagogue", "Mr Pedophobe", "Mme Grincheux", "Mr Atchoum", "Mme Dormeur", "Mr Prof"};
+char * listeInstit[15] = {"Mr Pedophobe", "Mme Grincheux", "Mr Atchoum", "Mme Dormeur", "Mr Prof"};
 
 typedef struct Classe
 {
     int id;
-    int nbeleves;
+    int nbEleves;
     TypeClasse_t type;
     char * listeInstit[15];
 } Classe_t;
 
+Classe_t* nouvelleClasse (int id, int nbEleves, TypeClasse_t type, char * listeInstit[15]);
+void afficherChasseur(Classe_t * classe);
+*/
 #endif

@@ -4,6 +4,7 @@
 #include "formulaire.h"
 #include "eleve.h"
 #include "affichage.h"
+#include "menu.h"
 
 // Gestion de l'inscription élève
 void formulaireInscriptionEleve(void)
@@ -11,8 +12,7 @@ void formulaireInscriptionEleve(void)
     Eleve_t *eleve = nouvelEleve(0, "", "", 0, 0);
     int choix;
     introMenu("Inscription");
-    do
-    {
+    while (choix != CHOIX_QUITTER) {
         printf("ID Courante : %d\n", eleve->idEleve);
         printf("Nom    : ");
         scanf("%s", eleve->nom);
@@ -22,14 +22,11 @@ void formulaireInscriptionEleve(void)
         scanf("%d", &(eleve->age));
         printf("Année de naissance : ");
         scanf("%d", &(eleve->anneeNaissance));
-        printf("\n[1] Valider"
-               "\n[2] Modifier"
-               "\n[0] Quitter"
-               "\n\nQue voulez-vous faire ? ");
-        scanf("%d", &choix);
-    } while (choix != CHOIX_QUITTER);
+        choix = menuFormulaireInscription();
+    }
 }
 
+/*
 // Valide l'inscription d'un élève
 void validerInscriptionEleve(void)
 {
@@ -40,3 +37,4 @@ void validerInscriptionEleve(void)
 void modifierInscriptionEleve(void)
 {
 }
+*/

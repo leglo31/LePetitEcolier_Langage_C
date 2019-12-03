@@ -6,6 +6,9 @@ lePetitEcolier: main.o affichage.o menu.o eleve.o date.o classe.o formulaire.o e
 testEcolier: main.o affichage.o menu.o formulaire.o eleve.o
 	gcc -Wall -o testEcolier main.o affichage.o menu.o formulaire.o eleve.o
 
+testAnnuaire: main.o affichage.o menu.o formulaire.o eleve.o annuaire.o
+	gcc -Wall -o testAnnuaire main.o affichage.o menu.o formulaire.o eleve.o annuaire.o
+
 main.o: main.c
 	gcc -Wall -o main.o -c main.c
 
@@ -37,4 +40,4 @@ clean:
 	rm -f *.o core
 
 mrproper: clean
-	rm -f lePetitEcolier
+	rm -f lePetitEcolier testEcolier

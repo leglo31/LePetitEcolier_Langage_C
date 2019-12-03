@@ -22,16 +22,7 @@ void introMenu(char *titre)
            titre);
 }
 
-// Afficher un élève
-void afficherEleve(void)
-{
-}
-
-// Afficher une classe
-void afficherClasse(void)
-{
-}
-
+/*
 // Afficher l'école revient à afficher toutes les classes
 void afficherEcole(void)
 {
@@ -40,3 +31,4 @@ void afficherEcole(void)
         afficherClasse();
     }
 }
+*/

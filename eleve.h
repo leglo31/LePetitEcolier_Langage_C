@@ -19,8 +19,11 @@ struct Eleve {
 };
 typedef struct Eleve Eleve_t;
 
-int idEleveCourant(void);
-int idEleveSuivant(int id);
+// int idEleveCourant(void);
+int idEleveSuivant(void);
+void valeurs(Eleve_t *eleve);
 Eleve_t *nouvelEleve(int idEleve, char *nom, char *prenom, int age, int anneeNaissance);
+// int idWhich(void);
+void afficherEleve(Eleve_t *eleve);
 
 #endif
