@@ -3,10 +3,12 @@
 
 #define TAILLE_NOM 31
 #define TAILLE_PRENOM 31
-#define AGE_MIN 3
+/*#define AGE_MIN 3
 #define AGE_MAX 15
 #define AN_MIN 2005
-#define AN_MAX 2017
+#define AN_MAX 2017*/
+
+typedef struct Eleve Eleve_t;
 
 struct Eleve {
     int idEleve;
@@ -14,16 +16,13 @@ struct Eleve {
     char prenom[TAILLE_PRENOM];
     int age;
     int anneeNaissance;
-    int idClasse;
-
+    // int idClasse;
 };
-typedef struct Eleve Eleve_t;
 
-// int idEleveCourant(void);
+int idEleveCourant(void);
 int idEleveSuivant(void);
-void valeurs(Eleve_t *eleve);
 Eleve_t *nouvelEleve(int idEleve, char *nom, char *prenom, int age, int anneeNaissance);
-// int idWhich(void);
-void afficherEleve(Eleve_t *eleve);
+// void effacerEleve(Eleve_t * eleve);
+void afficherEleve(void);
 
 #endif

@@ -3,10 +3,10 @@
 #include <stdlib.h>
 
 #include "menu.h"
+#include "affichage.h"
 #include "formulaire.h"
 #include "eleve.h"
-#include "affichage.h"
-#include "annuaire.h"
+#include "liste_eleve.h"
 
 // Constantes
 #define CHOIX_QUITTER 0
@@ -17,11 +17,10 @@
 #define CHOIX_ELEVE_INSCRIPTION 5
 #define CHOIX_ELEVE_MODIFICATION 6
 #define CHOIX_ELEVE_DESINSCRIPTION 7
-#define CHOIX_VALIDER 1
-#define CHOIX_MODIFIER 2
-#define CHOIX_AFFICHER 3
 
-// Gère le menu Accueil
+/*
+    Laurent : Gère le menu Accueil
+*/
 void menuAccueil(void)
 {
     int choix;
@@ -48,23 +47,21 @@ void menuAccueil(void)
     } while (choix != CHOIX_QUITTER);
 }
 
-/*-------------------------------------------------------------------
-    Gère le choix de l'utilisateur pour le menu Accueil
--------------------------------------------------------------------*/
+/*
+    Laurent : Gère le choix de l'utilisateur pour le menu Accueil
+*/
 void traiterChoixAccueil(int choix)
 {
     // Traiter choix
     switch (choix)
     {
     case CHOIX_ELEVE:;
-        // afficherEleve();
-        // break;
+        afficherEleve();
+        break;
     case CHOIX_ELEVE_RECHERCHE:;
     case CHOIX_CLASSE:;
-        // afficherClasse();
-        // break;
-    case CHOIX_ECOLE:;
-        afficherAnnuaire();
+    case CHOIX_ECOLE:
+        afficheListeEleves();
         break;
     case CHOIX_ELEVE_INSCRIPTION:
         formulaireInscriptionEleve();
@@ -73,40 +70,3 @@ void traiterChoixAccueil(int choix)
     case CHOIX_ELEVE_DESINSCRIPTION:;
     }
 }
-
-int menuFormulaireInscription(void)
-{
-    int choix;
-    do
-    {
-        do
-        {
-            printf("\n[1] Valider"
-                   "\n[2] Modifier"
-                   "\n[3] Afficher"
-                   "\n[0] Quitter"
-                   "\n\nQue voulez-vous faire ? ");
-            scanf("%d", &choix);
-        } while (choix > 3 && choix < 0);
-    } while (choix != CHOIX_QUITTER);
-    return CHOIX_QUITTER;
-}
-
-void traiterChoixInscription(int choix)
-{
-    // Traiter choix
-    switch (choix)
-    {
-    case CHOIX_VALIDER:
-        sauveDansAnnuaire();
-        break;
-    case CHOIX_MODIFIER:;
-    case CHOIX_AFFICHER:;
-    }
-}
-
-/*
-void inscriptionConfirmer(Eleve_t *eleve) {
-
-}
-*/

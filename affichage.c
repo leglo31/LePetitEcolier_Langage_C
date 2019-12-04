@@ -1,10 +1,12 @@
-// Utilitaires d'affichage
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "affichage.h"
-#include "classe.h"
 #include "eleve.h"
+
+/*
+    Laurent : Utilitaires d'affichage
+*/
 
 // Efface l'écran
 void effaceEcran(void)
@@ -16,19 +18,8 @@ void effaceEcran(void)
 void introMenu(char *titre)
 {
     effaceEcran();
-    printf("Le Petit écolier           "
-           "Gestionnaire d'élèves         "
+    printf("Le Petit écolier          "
+           "Gestionnaire d'élèves          "
            "%s\n\n",
            titre);
 }
-
-/*
-// Afficher l'école revient à afficher toutes les classes
-void afficherEcole(void)
-{
-    for (int i = 0; i < 15; i++)
-    {
-        afficherClasse();
-    }
-}
-*/

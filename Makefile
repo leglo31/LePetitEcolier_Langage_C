@@ -1,13 +1,10 @@
 all: lePetitEcolier testEcolier
 
-lePetitEcolier: main.o affichage.o menu.o eleve.o date.o classe.o formulaire.o eleve_dao.o classe_dao.o
-	gcc -Wall -o lePetitEcolier main.o affichage.o menu.o eleve.o date.o classe.o formulaire.o eleve_dao.o classe_dao.o
+lePetitEcolier: main.o affichage.o menu.o formulaire.o eleve.o liste_eleve.o classe.o
+	gcc -Wall -o lePetitEcolier main.o affichage.o menu.o formulaire.o eleve.o liste_eleve.o classe.o
 
-testEcolier: main.o affichage.o menu.o formulaire.o eleve.o
-	gcc -Wall -o testEcolier main.o affichage.o menu.o formulaire.o eleve.o
-
-testAnnuaire: main.o affichage.o menu.o formulaire.o eleve.o annuaire.o
-	gcc -Wall -o testAnnuaire main.o affichage.o menu.o formulaire.o eleve.o annuaire.o
+testEcolier: main.o affichage.o menu.o formulaire.o eleve.o liste_eleve.o
+	gcc -Wall -o testEcolier main.o affichage.o menu.o formulaire.o eleve.o liste_eleve.o
 
 main.o: main.c
 	gcc -Wall -o main.o -c main.c
@@ -20,21 +17,15 @@ menu.o: menu.c
 
 eleve.o: eleve.c
 	gcc -Wall -o eleve.o -c eleve.c
-
-date.o: date.c
-	gcc -Wall -o date.o -c date.c
-
-classe.o: classe.c
-	gcc -Wall -o classe.o -c classe.c
 	
 formulaire.o: formulaire.c
 	gcc -Wall -o formulaire.o -c formulaire.c
 
-eleve_dao.o: eleve_dao.c
-	gcc -Wall -o eleve_dao.o -c eleve_dao.c
+liste_eleve.o: liste_eleve.c
+	gcc -Wall -o liste_eleve.o -c liste_eleve.c
 
-classe_dao.o: classe_dao.c
-	gcc -Wall -o classe_dao.o -c classe_dao.c
+classe.o: classe.c
+	gcc -Wall -o classe.o -c classe.c
 
 clean:
 	rm -f *.o core

@@ -1,40 +1,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "liste_eleve.h"
 #include "formulaire.h"
-#include "eleve.h"
-#include "affichage.h"
 #include "menu.h"
+#include "affichage.h"
 
-// Gestion de l'inscription élève
+/*
+    Formulaire d'inscription d'un élève
+*/
 void formulaireInscriptionEleve(void)
 {
     Eleve_t *eleve = nouvelEleve(0, "", "", 0, 0);
-    int choix;
     introMenu("Inscription");
-    while (choix != CHOIX_QUITTER) {
-        printf("ID Courante : %d\n", eleve->idEleve);
-        printf("Nom    : ");
-        scanf("%s", eleve->nom);
-        printf("Prénom : ");
-        scanf("%s", eleve->prenom);
-        printf("Age    : ");
-        scanf("%d", &(eleve->age));
-        printf("Année de naissance : ");
-        scanf("%d", &(eleve->anneeNaissance));
-        choix = menuFormulaireInscription();
-    }
+    printf("ID Courante : %d\n", eleve->idEleve);
+    printf("Nom    : ");
+    scanf("%s", eleve->nom);
+    printf("Prénom : ");
+    scanf("%s", eleve->prenom);
+    printf("Age    : ");
+    scanf("%d", &(eleve->age));
+    printf("Année de naissance : ");
+    scanf("%d", &(eleve->anneeNaissance));
+    menuInscription(eleve);
 }
 
 /*
-// Valide l'inscription d'un élève
-void validerInscriptionEleve(void)
+    Menu d'inscription (post formulaire)
+*/
+int menuInscription(Eleve_t *eleve)
 {
+    int choixInscription;
+    do
+    {
+        do
+        {
+            printf("\n[1] Valider"
+                   "\n[2] Modifier"
+                   "\n[3] Afficher"
+                   "\n[0] Quitter"
+                   "\n\nQue voulez-vous faire ? ");
+            scanf("%d", &choixInscription);
+            traiterChoixInscription(choixInscription, eleve);
+        } while (choixInscription > 3 && choixInscription < 0);
+    } while (choixInscription != CHOIX_QUITTER);
+    return CHOIX_QUITTER;
 }
 
-// Permet de modifier le formulaire l'inscription d'un élève
-// Ce qui revient à recommencer la saisie avec la même ID
-void modifierInscriptionEleve(void)
-{
-}
+/*
+    Traitement du choix menuInscription
 */
+void traiterChoixInscription(int choix, Eleve_t *eleve)
+{
+    // Traiter choix
+    switch (choix)
+    {
+    case CHOIX_INSCRIPTION_VALIDER:
+        enregistreDansListe(eleve);
+        break;
+    case CHOIX_INSCRIPTION_MODIFIER:;
+    }
+}
