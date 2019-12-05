@@ -3,10 +3,10 @@
 
 #define TAILLE_NOM 31
 #define TAILLE_PRENOM 31
-/*#define AGE_MIN 3
-#define AGE_MAX 15
-#define AN_MIN 2005
-#define AN_MAX 2017*/
+#define AGE_MIN 6
+#define AGE_MAX 16
+#define AN_MIN 2003
+#define AN_MAX 2014
 
 typedef struct Eleve Eleve_t;
 
@@ -22,7 +22,5 @@ struct Eleve {
 int idEleveCourant(void);
 int idEleveSuivant(void);
 Eleve_t *nouvelEleve(int idEleve, char *nom, char *prenom, int age, int anneeNaissance);
-// void effacerEleve(Eleve_t * eleve);
-void afficherEleve(void);
 
 #endif

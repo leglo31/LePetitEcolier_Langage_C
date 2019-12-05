@@ -5,9 +5,10 @@
 #include "formulaire.h"
 #include "menu.h"
 #include "affichage.h"
+#include "saisie.h"
 
 /*
-    Formulaire d'inscription d'un élève
+    Kévin & Quentin : Formulaire d'inscription d'un élève
 */
 void formulaireInscriptionEleve(void)
 {
@@ -19,14 +20,18 @@ void formulaireInscriptionEleve(void)
     printf("Prénom : ");
     scanf("%s", eleve->prenom);
     printf("Age    : ");
-    scanf("%d", &(eleve->age));
-    printf("Année de naissance : ");
-    scanf("%d", &(eleve->anneeNaissance));
+    eleve->age = entryAge();
+    videBuffer();
+    // scanf("%d", &(eleve->age));
+    printf("Année de naissance (2003 à 2014) : ");
+    eleve->anneeNaissance = entryAnneeNaissance();
+    videBuffer();
+    // scanf("%d", &(eleve->anneeNaissance));
     menuInscription(eleve);
 }
 
 /*
-    Menu d'inscription (post formulaire)
+    Kévin & Laurent : Menu d'inscription (post formulaire)
 */
 int menuInscription(Eleve_t *eleve)
 {
@@ -36,19 +41,24 @@ int menuInscription(Eleve_t *eleve)
         do
         {
             printf("\n[1] Valider"
-                   "\n[2] Modifier"
-                   "\n[3] Afficher"
+                   "\n[2] Modifier saisie"
+                   "\n[3] Afficher tous les élèves"
                    "\n[0] Quitter"
                    "\n\nQue voulez-vous faire ? ");
             scanf("%d", &choixInscription);
+            if (choixInscription == 3)
+            {
+                introMenu("Liste élèves");
+            }
             traiterChoixInscription(choixInscription, eleve);
         } while (choixInscription > 3 && choixInscription < 0);
+
     } while (choixInscription != CHOIX_QUITTER);
     return CHOIX_QUITTER;
 }
 
 /*
-    Traitement du choix menuInscription
+    Kévin & Laurent : Traitement du choix menuInscription
 */
 void traiterChoixInscription(int choix, Eleve_t *eleve)
 {
@@ -58,6 +68,66 @@ void traiterChoixInscription(int choix, Eleve_t *eleve)
     case CHOIX_INSCRIPTION_VALIDER:
         enregistreDansListe(eleve);
         break;
+    case CHOIX_INSCRIPTION_MODIFIER:
+        formulaireInscriptionEleve();
+        break;
+    case CHOIX_AFFICHER_ELEVES:
+        afficheListeEleves();
+        break;
+    }
+}
+
+/*
+    Quentin : Formulaire de création d'une classe
+*/
+void formulaireCreationClasse(void)
+{
+    // Crée une classe et hydrate
+    Classe_t *classe = nouvelleClasse(0, 0);
+    introMenu("Création classe");
+    // Affecte automatiquement un ID à la classe
+    printf("ID Classe Courante : %d\n", classe->idClasse);
+    printf("Section : ");
+    classe->section = entryClasse();
+    videBuffer();
+    menuCreation(classe);
+}
+
+/*
+    Quentin : menu création de classe
+*/
+int menuCreation(Classe_t *classe)
+{
+    int choixCreation;
+    do
+    {
+        do
+        {
+            printf("\n[1] Valider"
+                   "\n[2] Modifier saisie"
+                   "\n[0] Quitter"
+                   "\n\nQue voulez-vous faire ? ");
+            scanf("%d", &choixCreation);
+            traiterChoixCreation(choixCreation, classe);
+        } while (choixCreation > 2 && choixCreation < 0);
+
+    } while (choixCreation != CHOIX_QUITTER);
+    return CHOIX_QUITTER;
+}
+
+/*
+    Quentin : Traitement du choix menu création classe
+*/
+void traiterChoixCreation(int choix, Classe_t *classe)
+{
+    // Traiter choix
+    switch (choix)
+    {
+    case CHOIX_INSCRIPTION_VALIDER:;
+        // enregistreDansListeClasse(classe);
+        // break;
     case CHOIX_INSCRIPTION_MODIFIER:;
+        // formulaireCreationClasse();
+        // break;
     }
 }
