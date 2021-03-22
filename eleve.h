@@ -8,19 +8,17 @@
 #define AN_MIN 2003
 #define AN_MAX 2014
 
-typedef struct Eleve Eleve_t;
-
-struct Eleve {
+typedef struct Eleve {
     int idEleve;
     char nom[TAILLE_NOM];
     char prenom[TAILLE_PRENOM];
     int age;
     int anneeNaissance;
-    // int idClasse;
-};
+    int idClasse;
+} Eleve_t;
 
 int idEleveCourant(void);
 int idEleveSuivant(void);
-Eleve_t *nouvelEleve(int idEleve, char *nom, char *prenom, int age, int anneeNaissance);
+Eleve_t *nouvelEleve(int idEleve, char *nom, char *prenom, int age, int anneeNaissance, int idClasse);
 
 #endif

@@ -3,5 +3,6 @@
 
 void effaceEcran(void);
 void introMenu(char *titre);
+void WIP(void);
 
 #endif

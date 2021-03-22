@@ -3,17 +3,17 @@
 
 #include "liste_eleve.h"
 #include "affichage.h"
-#include "saisie.h"
 #include "eleve.h"
+#include "classe.h"
 
 /*
-    Quentin : liste est un tableau de pointeurs d'élèves
+    Laurent : liste est un tableau de pointeurs d'élèves
     static indique que la variable est globale au fichier source et non à tout le code
 */
 static Eleve_t *liste[NB_ELEVES_MAX];
 
 /*
-    Kevin & Quentin : Valide l'inscription, inscrit l'élève en mémoire et dans le fichier de sauvegarde
+   Laurent : Valide l'inscription, inscrit l'élève en mémoire et dans le fichier de sauvegarde
 */
 int enregistreDansListe(Eleve_t *eleve)
 {
@@ -32,7 +32,7 @@ void restaureDansListe(Eleve_t *eleve)
 }
 
 /*
-    Quentin : Afficher un élève selon l'ID fournie par l'utilisateur
+    Laurent : Afficher un élève selon l'ID fournie par l'utilisateur
 */
 void afficherEleve(void)
 {
@@ -44,14 +44,15 @@ void afficherEleve(void)
            "\nNom    : %s"
            "\nPrénom : %s"
            "\nAge    : %d"
-           "\nAnnée de naissance : %d",
+           "\nAnnée de naissance : %d"
+           "\nClasse : %s\n",
            liste[idChoix]->idEleve, liste[idChoix]->nom, liste[idChoix]->prenom,
-           liste[idChoix]->age, liste[idChoix]->anneeNaissance);
+           liste[idChoix]->age, liste[idChoix]->anneeNaissance, classeToString(liste[idChoix]->idClasse));
     pressEnter();
 }
 
 /*
-    Kevin & Quentin : Affiche la liste des élèves inscrits
+    Laurent  : Affiche la liste des élèves inscrits
 */
 void afficheListeEleves(void)
 {
@@ -63,39 +64,40 @@ void afficheListeEleves(void)
                "\nNom    : %s"
                "\nPrénom : %s"
                "\nAge    : %d"
-               "\nAnnée de naissance : %d\n",
+               "\nAnnée de naissance : %d"
+               "\nClasse : %s\n",
                liste[i]->idEleve, liste[i]->nom, liste[i]->prenom,
-               liste[i]->age, liste[i]->anneeNaissance);
+               liste[i]->age, liste[i]->anneeNaissance, classeToString(liste[i]->idClasse));
     }
     pressEnter();
 }
 
 /*
-    Quentin : crée un buffer, une chaine de caractère,
+    Laurent : crée un buffer, une chaine de caractère,
     incluant tous les détails d'un élève séparés par
     un espace, afin de les sauvegarder en txt
 */
 int eleveBufferToFichier(char *eleveBuffer, Eleve_t *eleve)
 {
     sprintf(eleveBuffer,
-            "%d %s %s %d %d\n",
+            "%d %s %s %d %d %d\n",
             eleve->idEleve,
             eleve->nom,
             eleve->prenom,
             eleve->age,
-            eleve->anneeNaissance
-            // eleve->idClasse
-    );
+            eleve->anneeNaissance,
+            eleve->idClasse);
     return EXIT_SUCCESS;
 }
 
 /*
-    Kevin & Quentin : écriture dans un fichier txt le buffer élève
+    Laurent  : écriture dans un fichier txt le buffer élève
 */
 int ecritureDansListe(void)
 {
     FILE *f;
-    // Limite : 3 pour l'ID, 62 pour Nom/Prénom, 2 pour l'âge, 4 pour l'année de naissance, 1 pour le retour à la ligne, 5 espaces (77)
+    // Limite : 3 pour l'ID, 62 pour Nom/Prénom, 2 pour l'âge, 4 pour l'année de naissance,
+    // 1 pour l'idclasse 1 pour le retour à la ligne, 6 espaces (79)
     char ligne[TAILLE_LIGNE_INFOS_ELEVE];
     int eleveCount = idEleveCourant();
     f = fopen("./liste_eleves.txt", "ab");
@@ -113,7 +115,7 @@ int ecritureDansListe(void)
 }
 
 /*
-    Quentin : lecture de la liste par flux
+    Laurent : lecture de la liste par flux
 */
 int lectureDansListe(void)
 {
@@ -137,13 +139,13 @@ int lectureDansListe(void)
         // Récupère les informations dans le fichier .txt
         // Note : fgets lit ligne par ligne
         // Note : scanf et ses dérivés considèrent les espaces comme des séparateurs
-        sscanf(ligne, "%d%s%s%d%d", &(elevetemp->idEleve), elevetemp->nom, elevetemp->prenom,
-               &(elevetemp->age), &(elevetemp->anneeNaissance));
+        sscanf(ligne, "%d%s%s%d%d%d", &(elevetemp->idEleve), elevetemp->nom, elevetemp->prenom,
+               &(elevetemp->age), &(elevetemp->anneeNaissance), &(elevetemp->idClasse));
         // Affiche lesdites informations
         // printf("id %d, nom %s, prenom %s, age %d, annee %d\n", elevetemp->idEleve, elevetemp->nom, elevetemp->prenom,
         // elevetemp->age, elevetemp->anneeNaissance);
         nouvelEleve(elevetemp->idEleve, elevetemp->nom, elevetemp->prenom,
-                    elevetemp->age, elevetemp->anneeNaissance);
+                    elevetemp->age, elevetemp->anneeNaissance, elevetemp->idClasse);
         restaureDansListe(elevetemp);
     }
     // Fermeture du fichier txt

@@ -4,13 +4,13 @@
 #include "liste_classe.h"
 
 /*
-    Quentin : listeC tableau de pointeurs de classe
+   Laurent : listeC tableau de pointeurs de classe
     static indique que la variable est globale au fichier source et non à tout le code
 */
 static Classe_t *listeC[NB_CLASSES_MAX];
 
 /*
-    Quentin : Valide la création, inscrit la classe en mémoire et dans le fichier de sauvegarde
+    Laurent : Valide la création, inscrit la classe en mémoire et dans le fichier de sauvegarde
 */
 int enregistreDansListeClasse(Classe_t *classe)
 {
@@ -22,17 +22,17 @@ int enregistreDansListeClasse(Classe_t *classe)
 }
 
 /*
-    Quentin : 
+    Laurent : Restaure la classe
 */
 void restaureDansListeClasse(Classe_t *classe)
 {
-    int i = idClasseCourant();
-    listeC[i] = classe;
-    i++;
+    int iC = idClasseCourant();
+    listeC[iC] = classe;
+    iC++;
 }
 
 /*
-    Quentin : Afficher une classe selon l'ID de classe fournie par l'utilisateur
+    Laurent : Afficher une classe selon l'ID de classe fournie par l'utilisateur
 */
 void showClasse(void)
 {
@@ -47,7 +47,7 @@ void showClasse(void)
 }
 
 /*
-    Quentin : Affiche la liste des classes
+    Laurent : Affiche la liste des classes
 */
 void allClasses(void)
 {
@@ -63,7 +63,7 @@ void allClasses(void)
 }
 
 /*
-    Quentin : crée un buffer, une chaine de caractère,
+    Laurent : crée un buffer, une chaine de caractère,
     incluant tous les détails d'une classe séparés par
     un espace, afin de les sauvegarder en txt
 */
@@ -77,7 +77,7 @@ int classeBufferToFichier(char *classeBuffer, Classe_t *classe)
 }
 
 /*
-    Quentin : écriture dans un fichier txt le buffer classe
+    Laurent : écriture dans un fichier txt le buffer classe
 */
 int appendClassList(void)
 {
@@ -88,7 +88,7 @@ int appendClassList(void)
     fClasse = fopen("./liste_classes.txt", "ab");
     if (fClasse == NULL)
     {
-        printf("\nErreur ecritureDansListeC : impossible d'ouvrir ./liste_classes.txt\n");
+        printf("\nErreur appendClassList : impossible d'ouvrir ./liste_classes.txt\n");
         return EXIT_FAILURE;
     }
 
@@ -100,13 +100,14 @@ int appendClassList(void)
 }
 
 /*
-    Quentin : lecture de la listeC par flux
+    Laurent : lecture de la listeC par flux
 */
 int readClassList(void)
 {
     FILE *fClasse;
     // Une ligne a été définie comme une chaîne de 5 caractères maximum à l'écriture
-    char ligne[TAILLE_LIGNE_INFOS_CLASSE];
+    // Quentin : 10 parce que je suis insecure
+    char ligneC[TAILLE_LIGNE_INFOS_CLASSE];
 
     // Ouverture du fichier txt
     fClasse = fopen("./liste_eleves.txt", "rt");
@@ -117,14 +118,12 @@ int readClassList(void)
     }
 
     // Tant que le fichier ne contient pas de ligne vide
-    while (fgets(ligne, sizeof ligne, fClasse) != NULL)
+    while (fgets(ligneC, sizeof ligneC, fClasse) != NULL)
     {
         // Alloue de la mémoire pour une struct classe temporaire
         Classe_t *classetemp = (Classe_t *)malloc(sizeof(Classe_t));
         // Récupère les informations dans le fichier .txt
-        // Note : fgets lit ligne par ligne
-        // Note : scanf et ses dérivés considèrent les espaces comme des séparateurs
-        sscanf(ligne, "%d%*d", &(classetemp->idClasse)/*,classetemp->section*/);
+        sscanf(ligneC, "%d%d", &(classetemp->idClasse), &(classetemp->section));
         // Affiche lesdites informations
         nouvelleClasse(classetemp->idClasse, classetemp->section);
         restaureDansListeClasse(classetemp);

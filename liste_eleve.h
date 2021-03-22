@@ -2,7 +2,7 @@
 #define LISTE_ELEVE_H
 
 #define NB_ELEVES_MAX 375
-#define TAILLE_LIGNE_INFOS_ELEVE 77
+#define TAILLE_LIGNE_INFOS_ELEVE 79
 
 #include <string.h>
 

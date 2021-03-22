@@ -14,5 +14,5 @@ int main(void)
     lectureDansListe();
     readClassList();
     menuAccueil();
-    return EXIT_SUCCESS;
+EXIT_SUCCESS;
 }

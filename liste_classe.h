@@ -2,11 +2,11 @@
 #define LISTE_CLASSE_H
 
 #define NB_CLASSES_MAX 15
-#define TAILLE_LIGNE_INFOS_CLASSE 5
+#define TAILLE_LIGNE_INFOS_CLASSE 10
 
-#include "classe.h"
 #include "affichage.h"
 #include "saisie.h"
+#include "classe.h"
 
 int enregistreDansListeClasse(Classe_t *classe);
 void restaureDansListeClasse(Classe_t *classe);

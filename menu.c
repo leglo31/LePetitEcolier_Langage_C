@@ -60,19 +60,27 @@ void traiterChoixAccueil(int choix)
     case CHOIX_ELEVE_RCC_ID:
         afficherEleve();
         break;
-    case CHOIX_ELEVE_RCC_NP:;
+    case CHOIX_ELEVE_RCC_NP:
+        WIP();
+        break;
     case CHOIX_ELEVE_INSCRIRE:
         formulaireInscriptionEleve();
         break;
-    case CHOIX_ELEVE_MODIFIER:;
-    case CHOIX_ELEVE_DESINSCRIRE:;
+    case CHOIX_ELEVE_MODIFIER:
+        WIP();
+        break;
+    case CHOIX_ELEVE_DESINSCRIRE:
+        WIP();
+        break;
     case CHOIX_CLASSE_AFFICHER:
         showClasse();
         break;
     case CHOIX_CLASSE_CREER:
         formulaireCreationClasse();
         break;
-    case CHOIX_CLASSE_SUPPRIMER:;
+    case CHOIX_CLASSE_SUPPRIMER:
+        WIP();
+        break;
     case CHOIX_ECOLE_AFFICHER:
         afficheListeEleves();
         break;

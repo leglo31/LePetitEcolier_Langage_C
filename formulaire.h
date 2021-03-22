@@ -12,6 +12,7 @@
 void formulaireInscriptionEleve(void);
 int menuInscription(Eleve_t *eleve);
 void traiterChoixInscription(int choix, Eleve_t * eleve);
+
 void formulaireCreationClasse(void);
 int menuCreation(Classe_t *classe);
 void traiterChoixCreation(int choix, Classe_t *classe);
